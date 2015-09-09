@@ -2,15 +2,17 @@
 <div class="row">
 
   <div class="col-sm-6 col-sm-offset-3">
+    <% current_user.client.user_media_feed.each do |feed| %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="row">
           <div class="col-sm-2">
-            <%= image_tag current_user.image_url, class: "img-responsive img-circle",
-                        alt: "#{current_user.name} image" %>
+            <%= image_tag feed.caption.from.profile_picture, class: "img-responsive img-circle",
+                        alt: "#{feed.caption.from.username} image" %>
           </div>
           <div class="col-sm-8">
-            <p class="text-left"><%= current_user.name %></p>
+            <p class="text-left"><%= link_to feed.caption.from.username, "https://instagram.com/#{feed.caption.from.username}" %></p>
+            <!-- <p class="text-left"><%= link_to feed.caption.from.username, "https://instagram.com/#{feed.caption.from.username}" %></p> -->
           </div>
           <div class="col-sm-2">
             <p>1 d</p>
@@ -18,11 +20,21 @@
         </div>
       </div>
       <div class="panel-body">
-        <%= image_tag current_user.image_url, class: "img-responsive",
+        <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
                       alt: "#{current_user.name} image" %>
       </div>
       <div class="panel-footer">
-        <p>#yourock, #awesome</p>
+        <% if feed.likes.count > 4 %>
+        <p> <%= feed.likes.count %> likes</p>
+        <% else %>
+          <% feed.likes.data.each do |username| %>
+          <%= link_to username.username, "https://instagram.com/#{username.username}" %>
+          <% end %>
+          like this
+        <% end %>
+
+
+        <p> <%= feed.caption.text %> </p>
         <hr>
         <div class="row">
           <div class="col-sm-1" id="heart">
@@ -39,5 +51,14 @@
         </div>
       </div>
     </div>
+    <% end %>
   </div>
 </div>
+<!-- #<Hashie::Mash attribution=nil
+              caption=#<Hashie::Mash created_time="1441758056" from=#<Hashie::Mash        full_name="MommaMarcy" id="1661244360" profile_picture="http://photos-g.ak.instagram.com/hphotos-ak-xpf1/t51.2885-19/10919201_1581657525383582_2105136272_a.jpg" username="troggshollowmomma"> id="1069867777386620156" text="And now some pretty pink clouds (which would be way more serene without the sound of the dog chasing a chicken).">
+
+              comments=#<Hashie::Mash count=0 data=[]> created_time="1441758056" filter="Normal" id="1069866582471354231_1661244360"
+
+              images=#<Hashie::Mash low_resolution=#<Hashie::Mash height=320 url="https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s320x320/e35/11821172_1219769618048424_1294589269_n.jpg" width=320> standard_resolution=#<Hashie::Mash height=640 url="https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s640x640/sh0.08/e35/11821172_1219769618048424_1294589269_n.jpg" width=640> thumbnail=#<Hashie::Mash height=150 url="https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s150x150/e35/11821172_1219769618048424_1294589269_n.jpg" width=150>>
+
+              likes=#<Hashie::Mash count=4 data=[#<Hashie::Mash full_name="Cecile Watkins-Harris" id="2029799720" profile_picture="http://photos-b.ak.instagram.com/hphotos-ak-xaf1/t51.2885-19/s150x150/11261392_1451164335190601_2127240061_a.jpg" username="cecilbfermented">, #<Hashie::Mash full_name="Laurie McCormack" id="11278428" profile_picture="http://photos-d.ak.instagram.com/hphotos-ak-xaf1/t51.2885-19/11355916_1451978258444307_1063292314_a.jpg" username="glasgowlaurie">, #<Hashie::Mash full_name="Molly Breslin" id="1826855916" profile_picture="http://photos-b.ak.instagram.com/hphotos-ak-xta1/t51.2885-19/11117129_819856061383113_812009000_a.jpg" username="molly.breslin">, #<Hashie::Mash full_name="Trogg's Hollow" id="31569117" profile_picture="http://scontent.cdninstagram.com/hphotos-xap1/t51.2885-19/11203275_1405843659739054_974891664_a.jpg" username="troggshollow">]> link="https://instagram.com/p/7Y7f0FRCd3MPjavtnhwYr3bliAK07D1M8Wv6U0/" location=nil tags=[] type="image" user=#<Hashie::Mash full_name="MommaMarcy" id="1661244360" profile_picture="http://photos-g.ak.instagram.com/hphotos-ak-xpf1/t51.2885-19/10919201_1581657525383582_2105136272_a.jpg" username="troggshollowmomma"> user_has_liked=false users_in_photo=[#<Hashie::Mash position=#<Hashie::Mash x=0.5576805 y=0.45933798> user=#<Hashie::Mash full_name="Trogg's Hollow" id="31569117" profile_picture="http://scontent.cdninstagram.com/hphotos-xap1/t51.2885-19/11203275_1405843659739054_974891664_a.jpg" username="troggshollow">>]> -->

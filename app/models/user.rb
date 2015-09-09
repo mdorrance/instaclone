@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
     user.save
     user
   end
+
+  def client
+    @client ||= Instagram.client(access_token: token)
+  end
+
+
+
 end
