@@ -98,9 +98,19 @@ body {
 :-moz-placeholder { /* older Firefox*/
  text-align: center;
 }
+
 ::-moz-placeholder { /* Firefox 19+ */
  text-align: center;
 }
+
 :-ms-input-placeholder {
  text-align: center;
+}
+
+.profile .btn {
+  margin-top: 24px;
+}
+
+.stats .col-sm-4 {
+  padding-left: 0px;
 }
