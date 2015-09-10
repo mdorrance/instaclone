@@ -20,8 +20,10 @@
         </div>
       </div>
       <div class="panel-body">
-        <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
+        <a href="#" data-toggle="modal" data-target="#photo-<%= feed.id %>">
+          <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
                       alt: "#{current_user.name} image" %>
+        </a>
       </div>
       <div class="panel-footer">
         <% if feed.likes.count > 4 %>
@@ -51,6 +53,26 @@
         </div>
       </div>
     </div>
+    <!-- Modal -->
+    <div id="photo-<%= feed.id %>" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 class="modal-title"><%= feed.caption.from.username %></h1>
+          </div>
+          <div class="modal-body">
+            <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
+                        alt: "#{feed.caption.from.username} image" %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- end of Modal -->
     <% end %>
   </div>
 </div>

@@ -31,9 +31,75 @@
   <div class="row">
     <% current_user.client.user_recent_media.each do |media_item| %>
     <div class="col-sm-4">
-      <%= image_tag media_item.images.standard_resolution.url, class: "img-responsive",
+      <a href="#" data-toggle="modal" data-target="#photo-<%= media_item.id %>">
+        <%= image_tag media_item.images.standard_resolution.url, class: "img-responsive",
                   alt: "#{current_user.name} image" %>
+      </a>
     </div>
+    <!-- Modal -->
+    <div id="photo-<%= media_item.id %>" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-7">
+                <%= image_tag media_item.images.standard_resolution.url, class: "img-responsive",
+                          alt: "#{media_item.caption.from.username} image" %>
+              </div>
+              <div class="col-sm-5">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <%= image_tag current_user.image_url, class: "img-responsive img-circle",
+                                alt: "#{current_user.name} image" %>
+                  </div>
+                  <div class="col-sm-9">
+                    <h5> <%= current_user.name %> </h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <hr>
+                  <p> <%= media_item.likes.count %> likes </p>
+                  <br>
+                  <% media_item.comments.data.each do |comment| %>
+                    <p> <%= link_to comment.from.username, "https://instagram.com/#{comment.from.username}" %> <%= comment.text %> </p>
+                  <% end %>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-1" id="heart">
+                    <i class="fa fa-heart-o"></i>
+                  </div>
+                  <div class="col-sm-6" id="comment">
+                    <input type="text" class="form-control" placeholder="Comment ...">
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="dots">
+                      <span>&#x25cb;</span><span>&#x25cb;</span><span>&#x25cb;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div> -->
+        </div>
+      </div>
+    </div> <!-- end of Modal -->
     <% end %>
   </div>
 </div>
+
+<!-- #<Hashie::Mash attribution=nil
+caption=#<Hashie::Mash created_time="1355068137"
+
+from=#<Hashie::Mash full_name="Mike Dorrance" id="251122079" profile_picture="http://photos-c.ak.instagram.com/hphotos-ak-xaf1/t51.2885-19/11324440_693505440782570_2062752577_a.jpg" username="heshekids"> id="342659192779211599" text="Getting creative!!!">
+
+comments=#<Hashie::Mash count=1 data=[#<Hashie::Mash created_time="1355184937" from=#<Hashie::Mash full_name="Jen Gray" id="2476995" profile_picture="http://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/11330819_1453468294979340_1046088695_a.jpg" username="jen_gray"> id="343638620426502669" text="Love!">]> created_time="1355068137" filter="Lo-fi" id="342658827841208581_251122079"
+
+images=#<Hashie::Mash low_resolution=#<Hashie::Mash height=320 url="https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s320x320/e15/11232521_689199977858612_1277242302_n.jpg" width=320> standard_resolution=#<Hashie::Mash height=612 url="https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/e15/11232521_689199977858612_1277242302_n.jpg" width=612> thumbnail=#<Hashie::Mash height=150 url="https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-15/s150x150/e15/11232521_689199977858612_1277242302_n.jpg" width=150>>
+
+likes=#<Hashie::Mash count=2 data=[#<Hashie::Mash full_name="//MINDMONIC" id="23557562" profile_picture="http://photos-d.ak.instagram.com/hphotos-ak-xaf1/t51.2885-19/11378308_388248104702667_562442087_a.jpg" username="chrisjparker">, #<Hashie::Mash full_name="Barron" id="246652669" profile_picture="http://photos-f.ak.instagram.com/hphotos-ak-xaf1/t51.2885-19/10584552_760483980656717_599961749_a.jpg" username="barrongi">]> link="https://instagram.com/p/TBXmNwoIEF/" location=nil tags=[] type="image" user=#<Hashie::Mash full_name="Mike Dorrance" id="251122079" profile_picture="http://photos-c.ak.instagram.com/hphotos-ak-xaf1/t51.2885-19/11324440_693505440782570_2062752577_a.jpg" username="heshekids"> user_has_liked=false users_in_photo=[]> -->
