@@ -7,12 +7,12 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-sm-2">
-            <%= image_tag feed.caption.from.profile_picture, class: "img-responsive img-circle",
-                        alt: "#{feed.caption.from.username} image" %>
+            <%= image_tag render_profile_picture(feed), class: "img-responsive img-circle",
+                        alt: "#{render_username(feed)} image" %>
           </div>
           <div class="col-sm-8">
-            <h5 class="text-left"><%= link_to feed.caption.from.username, "https://instagram.com/#{feed.caption.from.username}" %></h5>
-            <!-- <p class="text-left"><%= link_to feed.caption.from.username, "https://instagram.com/#{feed.caption.from.username}" %></p> -->
+            <h5 class="text-left"><%= link_to render_username(feed), "https://instagram.com/#{render_username(feed)}" %></h5>
+            <!-- <p class="text-left"><%= link_to render_username(feed), "https://instagram.com/#{render_username(feed)}" %></p> -->
           </div>
           <div class="col-sm-2">
             <h5>1 d</h5>
@@ -36,7 +36,7 @@
         <% end %>
 
 
-        <p> <%= feed.caption.text %> </p>
+        <p> <%= render_text(feed) %> </p>
         <hr>
         <div class="row">
           <div class="col-sm-1" id="heart">
@@ -61,11 +61,11 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h1 class="modal-title"><%= feed.caption.from.username %></h1>
+            <h1 class="modal-title"><%= render_username(feed) %></h1>
           </div>
           <div class="modal-body">
             <%= image_tag feed.images.standard_resolution.url, class: "img-responsive",
-                        alt: "#{feed.caption.from.username} image" %>
+                        alt: "#{render_username(feed)} image" %>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
