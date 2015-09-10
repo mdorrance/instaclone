@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  post '/search', to: 'feed#search'
+  post '/user_search', to: 'feed#user_search'
+  get '/users/show'
 
-  get 'users/index'
+  get '/users/index'
 
-  get 'feed/index'
+  get '/feed/index'
 
-  get 'feed/show'
-
+  get '/feed/show'
   get  '/logout', to: 'sessions#destroy'
 
   get  '/auth/instagram/callback', to: 'sessions#create'

@@ -1,0 +1,27 @@
+<%= render partial: 'layouts/feed_nav' %>
+<div class="row">
+
+  <div class="col-sm-6 col-sm-offset-3">
+    <% @feed.each do |feed| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-sm-2">
+            <%= image_tag feed.profile_picture, class: "img-responsive img-circle",
+                        alt: "#{feed.username} image" %>
+          </div>
+          <div class="col-sm-8">
+            <h5 class="text-left"><%= link_to feed.username, "https://instagram.com/#{feed.username}" %></h5>
+            <!-- <p class="text-left"><%= link_to render_username(feed), "https://instagram.com/#{render_username(feed)}" %></p> -->
+          </div>
+          <div class="col-sm-2">
+            <h5>1 d</h5>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <% end %>
+  </div>
+</div>
