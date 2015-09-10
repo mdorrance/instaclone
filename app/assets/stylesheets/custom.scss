@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster+Two);
+
 html,
 body {
   height: 100%;
@@ -6,6 +8,10 @@ body {
 body {
   // padding-top: 42px;
   background-color: #fafafa;
+}
+
+.navbar-brand {
+  font-family: 'Lobster Two', cursive;
 }
 
 .navbar-default, .panel-default > .panel-heading, .panel-footer {
