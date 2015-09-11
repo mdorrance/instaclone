@@ -5,9 +5,6 @@ class FeedController < ApplicationController
     @feed = current_user.client.user_media_feed({count:100}).paginate(page: params[:page], per_page: 20)
   end
 
-  def show
-  end
-
   def search
     tags = current_user.client.tag_search(params[:search])
     if tags[0].nil?

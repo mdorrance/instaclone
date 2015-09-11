@@ -1,7 +1,7 @@
 <div class="form-group">
-  <%= form_tag({method: "post", class: '', controller: "feed", action: "search"}) do%>
-    <%= label_tag "" %>
-    <%= text_field_tag "search", nil, class: 'form-control', placeholder: 'search' %>
-    <%= submit_tag "", class: 'hidden', method: "post" %>
+  <%= form_tag("/search", method: "get") do%>
+    <%= label_tag :search, "" %>
+    <%= text_field_tag :search, nil, class: 'form-control', placeholder: 'search #tags' %>
+    <%= submit_tag "", class: 'hidden', method: "get" %>
   <% end %>
 </div>
