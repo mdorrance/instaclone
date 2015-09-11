@@ -17,7 +17,6 @@ RSpec.describe "User can see feed", type: :feature do
         expect(page).to have_content "jen_gray"
         expect(page).to have_content "1 d"
         expect(page).to have_content "Everything's better with a Tutu in the house!"
-        expect(page).to have_content "Everything's better with a Tutu in the house!"
 
       end
     end
