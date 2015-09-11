@@ -1,6 +1,6 @@
 module FeedHelper
   def render_profile_picture(feed)
-    feed.caption.from.profile_picture if feed.caption
+    feed.user.profile_picture if feed.caption
   end
 
   def render_username(feed)
@@ -9,5 +9,17 @@ module FeedHelper
 
   def render_text(feed)
     feed.caption.text if feed.caption
+  end
+
+  def render_search_profile_picture(feed)
+    feed.user.profile_picture if feed.user
+  end
+
+  def render_search_username(feed)
+    feed.user.username if feed.user
+  end
+
+  def render_search_text(feed)
+    feed.user.text if feed.user
   end
 end
