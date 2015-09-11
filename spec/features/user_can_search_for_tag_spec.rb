@@ -13,8 +13,12 @@ RSpec.describe "User can search for hashtag", type: :feature do
         within(".navbar") do
           expect(page).to have_content "heshekids"
         end
+        within("#tag-search") do
+          fill_in "search", :with => "Mike"
+          click_button 'commit'
+        end
 
-        fill_in :placeholder => "Search #tags", :with => "Mike"
+        expect(current_path).to eq search_path
 
       end
     end
